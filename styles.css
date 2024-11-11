@@ -1,0 +1,299 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/images/background.jpg') center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Основной контейнер */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    margin-left: 250px; /* Ширина шторки */
+    transition: margin-left 0.3s ease; /* Плавное изменение при скрытии шторки */
+    padding-bottom: 60px; /* Высота подвала */
+}
+
+h1 {
+    text-align: center;
+}
+
+.delivery-info {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+#products {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    background: #f9f9f9;
+}
+
+.product img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#cart {
+    margin-top: 20px;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cart-items li {
+    padding: 5px 0;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Логотип */
+.logo {
+    position: fixed; /* Абсолютное позиционирование */
+    border-radius: 50%;
+    top: 10px; /* Отступ сверху */
+    left: 10px; /* Отступ слева */
+    width: 50px; /* Ширина логотипа */
+    height: 50px; /* Высота логотипа */
+    z-index: 10000; /* Высокий z-index для поверхностного отображения */
+}
+
+/* Слайдер */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+/* Основные стили для шторки */
+.sidebar {
+    height: 100%;
+    width: 250px; /* Ширина шторки */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: transform 0.3s ease; /* Плавное скрытие/показ */
+    padding-top: 60px;
+    z-index: 1000; /* Чтобы шторка была поверх остального контента */
+    display: flex;
+    flex-direction: column; /* Выстраиваем элементы в колонку */
+}
+
+/* Содержимое шторки */
+.sidebar-content {
+    flex: 1; /* Заполняет доступное пространство */
+}
+
+/* QR-коды и ссылки */
+.qr-links {
+    margin: 20px;
+    position: absolute;
+    bottom: 150px; /* Поднимаем блок на 150px от низа */
+    width: calc(100% - 40px); /* Ширина QR-блоков с учетом отступов */
+}
+
+.qr-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.qr-image {
+    width: 80px; /* Размер QR-кода */
+    height: 80px;
+    margin-right: 10px;
+}
+
+.qr-link {
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.qr-link:hover {
+    text-decoration: underline;
+}
+
+/* Ссылки в шторке */
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Кнопка для скрытия/показа шторки */
+.sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 250px; /* Учитываем ширину шторки */
+    width: 50px;
+    height: 50px;
+    background-color: #444;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    z-index: 1001; /* Чтобы кнопка была поверх шторки */
+    transition: left 0.3s ease; /* Плавное перемещение кнопки */
+}
+
+/* Перемещаем кнопку при частичном скрытии шторки */
+.sidebar.hidden ~ .sidebar-toggle {
+    left: 100px; /* Перемещаем кнопку при частичном скрытии шторки */
+}
+
+/* Обновляем основной контент */
+.container {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease; /* Плавное изменение при скрытии шторки */
+}
+
+.sidebar.hidden ~ .container {
+    margin-left: 100px; /* Уменьшаем отступ при частичном скрытии шторки */
+}
+
+/* Подвал */
+footer {
+    background-color: #111;
+    color: #f1f1f1;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: calc(100% - 250px); /* Учитываем ширину шторки */
+    left: 250px; /* Учитываем ширину шторки */
+    z-index: 999; /* Подвал будет под шторкой */
+}
+
+/* Медиа-запросы */
+
+/* Мобильные устройства (ширина экрана до 768px) */
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0; /* Убираем отступ для мобильных устройств */
+    }
+
+    .sidebar {
+        width: 200px; /* Уменьшаем ширину шторки */
+    }
+
+    .sidebar.hidden {
+        transform: translateX(-100px); /* Частично скрыта на мобильных устройствах */
+    }
+
+    .sidebar-toggle {
+        left: 200px; /* Перемещаем кнопку для мобильных устройств */
+    }
+
+    .sidebar.hidden ~ .sidebar-toggle {
+        left: 100px; /* Перемещаем кнопку при частичном скрытии шторки */
+    }
+
+    .sidebar a {
+        font-size: 18px; /* Уменьшаем размер шрифта для мобильных устройств */
+    }
+
+    .qr-links {
+        bottom: 10px; /* Отступ от низа для мобильных устройств */
+    }
+
+    footer {
+        position: static; /* Убираем фиксированное позиционирование для мобильных устройств */
+        width: 100%;
+        left: 0;
+    }
+}
+
+/* Таблетки (ширина экрана от 769px до 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 220px; /* Ширина шторки для планшетов */
+    }
+
+    .sidebar-toggle {
+        left: 220px; /* Перемещаем кнопку для планшетов */
+    }
+
+    .sidebar.hidden ~ .sidebar-toggle {
+        left: 120px; /* Перемещаем кнопку при частичном скрытии шторки для планшетов */
+    }
+
+    .product img {
+        height: 180px; /* Высота изображения продукта для планшетов */
+    }
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТУТРЫБА</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body background="/images/background.jpg">
+
+    <div id="sidebar" class="sidebar">
+        <a href="main.html" id="shop-link">Магазин</a>
+        <a href="contact.html" id="contacts-link">Контакты</a>
+         <!-- QR-коды и ссылки -->
+         <div class="qr-links">
+            <div class="qr-item">
+                <img src="/images/telegram-qr.png" alt="QR код для Telegram" class="qr-image">
+                <a href="https://t.me/tutryba" target="_blank" class="qr-link">Telegram</a>
+            </div>
+            <div class="qr-item">
+                <img src="/images/whatsapp-qr.png" alt="QR код для WhatsApp" class="qr-image">
+                <a href="https://chat.whatsapp.com/DK6nuNJlO5XITT8cU6ccei" target="_blank" class="qr-link">WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="container">
+        <img src="/images/logo.png" alt="TUTRYBA" class="logo">
+
+        <!-- Слайдер -->
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="images/slide1.jpg" alt="Slide 1"></div>
+                <div class="slide"><img src="images/slide2.jpg" alt="Slide 2"></div>
+                <div class="slide"><img src="images/slide3.jpg" alt="Slide 3"></div>
+            </div>
+        </div>
+
+        <h1>ТУТРЫБА</h1>
+
+        <p class="delivery-info">Доставка на следующий день после принятия заказа.</p>
+
+        <div id="products">
+            <!-- Здесь будет динамически добавляться список товаров -->
+        </div>
+
+        <h2>Корзина</h2>
+        <div id="cart">
+            <ul id="cart-items"></ul>
+            <p>Итого: <span id="total">0</span> руб.</p>
+        </div>
+
+        <h2>Оформление заказа</h2>
+        <form id="order-form" action="javascript:void(0);">
+            <label for="customer-name">Имя:</label>
+            <input type="text" id="customer-name" name="customer-name" required><br><br>
+
+            <label for="customer-phone">Телефон:</label>
+            <input type="text" id="customer-phone" name="customer-phone" required><br><br>
+
+            <label for="customer-address">Адрес доставки:</label>
+            <input type="text" id="customer-address" name="customer-address" required><br><br>
+
+            <input type="hidden" name="order-details" id="order-details">
+            <input type="hidden" name="total-amount" id="total-amount">
+
+            <button type="submit" id="place-order">Оформить заказ</button>
+        </form>
+    </div>
+    <footer>
+        <p>© 2024 TUTRYBA. Все права защищены.</p>
+    </footer>
+
+    <!-- EmailJS SDK через CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init("Gi6LpNMvHwhn5Rl70"); // Ваш публичный ключ
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const products = [
+                { name: "Вобла (Астрахань) 1 шт.", price: 100, image: "images/product1.jpg" },
+                { name: "Лещ (Дон) 1 шт.", price: 250, image: "images/product2.jpg" },
+                { name: "Забан и густера 1 связка", price: 100, image: "images/product3.jpg" },
+                { name: "Вобла 1 шт.", price: 150, image: "images/product4.jpg" },
+                { name: "Чехонь", price: 300, image: "images/product5.jpg" },
+                { name: "Масло горчичное 0.5 литра", price: 120, image: "images/product6.jpg" },
+                { name: "Масло подсолнечное 1.5 литра", price: 110, image: "images/product7.jpg" },
+                { name: "Икра Воблы (Чипсы) 10 шт.", price: 250, image: "images/product8.jpg" },
+                { name: "Палочки лосося 6 шт.", price: 100, image: "images/product9.jpg" }
+            ];
+
+            const productsContainer = document.getElementById('products');
+            const cartItems = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total');
+            const orderDetailsInput = document.getElementById('order-details');
+            const totalAmountInput = document.getElementById('total-amount');
+            const customerNameInput = document.getElementById('customer-name');
+            const customerPhoneInput = document.getElementById('customer-phone');
+            const customerAddressInput = document.getElementById('customer-address');
+            let total = 0;
+
+            const updateTotal = (amount) => {
+                total += amount;
+                totalElement.textContent = total;
+            };
+
+            const removeItemFromCart = (li, price) => {
+                cartItems.removeChild(li);
+                updateTotal(-price);
+            };
+
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                productDiv.setAttribute('data-name', product.name);
+                productDiv.setAttribute('data-price', product.price);
+
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <h2>${product.name}</h2>
+                    <p>Цена: ${product.price} руб.</p>
+                    <button class="add-to-cart">Добавить в корзину</button>
+                `;
+
+                productsContainer.appendChild(productDiv);
+
+                productDiv.querySelector('.add-to-cart').addEventListener('click', () => {
+                    const li = document.createElement('li');
+                    li.textContent = `${product.name} - ${product.price} руб.`;
+                    const removeBtn = document.createElement('button');
+                    removeBtn.textContent = 'Удалить';
+                    removeBtn.style.marginLeft = '10px';
+                    li.appendChild(removeBtn);
+                    cartItems.appendChild(li);
+
+                    updateTotal(product.price);
+
+                    removeBtn.addEventListener('click', () => {
+                        removeItemFromCart(li, product.price);
+                    });
+                });
+            });
+
+            document.getElementById('order-form').addEventListener('submit', (event) => {
+                event.preventDefault(); 
+
+                let orderDetails = `Товары:\n`;
+                cartItems.querySelectorAll('li').forEach(item => {
+                    orderDetails += item.textContent + '\n';
+                });
+
+                orderDetailsInput.value = orderDetails;
+                totalAmountInput.value = total;
+
+                const customerName = customerNameInput.value;
+                const customerPhone = customerPhoneInput.value;
+                const customerAddress = customerAddressInput.value;
+
+                emailjs.send("service_529r781", "template_v194cll", {
+                    order_details: orderDetails,
+                    total_amount: total,
+                    customer_name: customerName,
+                    customer_phone: customerPhone,
+                    customer_address: customerAddress,
+                })
+                .then(function(response) {
+                    alert('Заказ успешно отправлен!');
+                    cartItems.innerHTML = '';
+                    totalElement.textContent = '0';
+                    total = 0;
+                }, function(error) {
+                    alert('Ошибка при отправке заказа: ' + JSON.stringify(error));
+                });
+            });
+        });
+    </script>
+</body>
+</html>

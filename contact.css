@@ -1,0 +1,163 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/images/background.jpg') center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Логотип */
+.logo {
+    position: fixed; /* Абсолютное позиционирование */
+    top: 10px; /* Отступ сверху */
+    border-radius: 50%;
+    left: 10px; /* Отступ слева */
+    width: 50pxpx; /* Ширина логотипа (по необходимости) */
+    height: 50px; /* Высота будет автоматически подстраиваться */
+    z-index: 10000; /* Высокий z-index для поверхностного отображения */
+}
+
+/* Шторка */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 1000; /* Шторка будет поверх остального контента */
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Кнопка для управления шторкой */
+.sidebar-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1002; /* Кнопка будет поверх шторки и логотипа */
+}
+
+/* Основной контент */
+.container {
+    margin-left: 250px; /* Чтобы контент не перекрывался шторкой */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    max-width: calc(100% - 270px); /* Учитываем ширину шторки и отступ для неё */
+}
+
+/* Заголовки */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 20px;
+    color: #007BFF;
+}
+
+/* Контактная информация */
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Форма обратной связи */
+#contact-form {
+    margin-top: 20px;
+}
+
+#contact-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#contact-form button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#contact-form button:hover {
+    background-color: #0056b3;
+}
+footer {
+    background-color: #111;
+    color: #f1f1f1;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    bottom: 0;
+    width: calc(100% - 250px); /* Учитываем ширину шторки */
+    left: 250px; /* Учитываем ширину шторки */
+    z-index: 999; /* Подвал будет под шторкой */
+}
+/* QR-коды и ссылки */
+.qr-links {
+    margin: 20px;
+    position: absolute;
+    bottom: 150px; /* Поднимаем блок на 150px от низа */
+    width: calc(100% - 40px); /* Ширина QR-блоков с учетом отступов */
+}
+
+.qr-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.qr-image {
+    width: 80px; /* Размер QR-кода */
+    height: 80px;
+    margin-right: 10px;
+}
+
+.qr-link {
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.qr-link:hover {
+    text-decoration: underline;
+}
+.map-container {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden; /* чтобы скруглить края карты */
+}

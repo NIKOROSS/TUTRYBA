@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
+    <link rel="stylesheet" href="contact.css">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body background="/images/background.jpg">
+    <!-- Логотип -->
+    <img src="/images/logo.png" alt="TUTRYBA" class="logo">
+
+    <!-- Шторка -->
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <a href="main.html" id="shop-link">Магазин</a>
+            <a href="contacts.html" id="contacts-link">Контакты</a>
+
+            <!-- QR-коды и ссылки -->
+            <div class="qr-links">
+                <div class="qr-item">
+                    <img src="/images/telegram-qr.png" alt="QR код для Telegram" class="qr-image">
+                    <a href="https://t.me/tutryba" target="_blank" class="qr-link">Telegram</a>
+                </div>
+                <div class="qr-item">
+                    <img src="/images/whatsapp-qr.png" alt="QR код для WhatsApp" class="qr-image">
+                    <a href="https://chat.whatsapp.com/DK6nuNJlO5XITT8cU6ccei" target="_blank" class="qr-link">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Контент страницы контактов -->
+    <div class="container">
+        <h1>Контакты</h1>
+        <p>Для связи с нами, пожалуйста, используйте следующую контактную информацию:</p>
+        
+        <div class="contact-info">
+            <h2>Наши контакты</h2>
+            <p><strong>Телефон:</strong> +7 (902) 652-40-93</p>
+            <p><strong>Адрес:</strong> Кутузовская ул., 25 Одинцово, Московская обл., 143005</p>
+            <a href="https://yandex.ru/maps/-/CDD9BZYo" target="_blank">Посмотреть на Яндекс.Картах</a>
+        </div>
+
+        <!-- Встраивание Яндекс.Карты -->
+        <div class="map-container">
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A626c956cf997951e71fab6a7face0a933c18ca8d515e8db16fbb0b86eff366b0&amp;source=constructor" width="700" height="400" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 TUTRYBA. Все права защищены.</p>
+    </footer>
+
+    <!-- EmailJS SDK через CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript" src="contact.js"></script>
+</body>
+</html>
